@@ -34,13 +34,6 @@ public class ModelImpl extends AbstractModel {
     private List<String> _enum;
     private BigDecimal minimum;
     private BigDecimal maximum;
-    private Number multipleOf;
-    private Boolean exclusiveMinimum;
-    private Boolean exclusiveMaximum;
-    private Integer minLength;
-    private Integer maxLength;
-    private String pattern;
-
 
     public ModelImpl _enum(List<String> value) {
         this._enum = value;
@@ -331,54 +324,6 @@ public class ModelImpl extends AbstractModel {
         return uniqueItems;
     }
 
-    public Number getMultipleOf() {
-        return multipleOf;
-    }
-
-    public void setMultipleOf(Number multipleOf) {
-        this.multipleOf = multipleOf;
-    }
-
-    public Boolean getExclusiveMinimum() {
-        return exclusiveMinimum;
-    }
-
-    public void setExclusiveMinimum(Boolean exclusiveMinimum) {
-        this.exclusiveMinimum = exclusiveMinimum;
-    }
-
-    public Boolean getExclusiveMaximum() {
-        return exclusiveMaximum;
-    }
-
-    public void setExclusiveMaximum(Boolean exclusiveMaximum) {
-        this.exclusiveMaximum = exclusiveMaximum;
-    }
-
-    public Integer getMinLength() {
-        return minLength;
-    }
-
-    public void setMinLength(Integer minLength) {
-        this.minLength = minLength;
-    }
-
-    public Integer getMaxLength() {
-        return maxLength;
-    }
-
-    public void setMaxLength(Integer maxLength) {
-        this.maxLength = maxLength;
-    }
-
-    public String getPattern() {
-        return pattern;
-    }
-
-    public void setPattern(String pattern) {
-        this.pattern = pattern;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -414,12 +359,6 @@ public class ModelImpl extends AbstractModel {
         if (allowEmptyValue != null ? !allowEmptyValue.equals(model.allowEmptyValue) : model.allowEmptyValue != null) {
             return false;
         }
-        if (exclusiveMaximum != null ? !exclusiveMaximum.equals(model.exclusiveMaximum) : model.exclusiveMaximum != null) {
-            return false;
-        }
-        if (exclusiveMinimum != null ? !exclusiveMinimum.equals(model.exclusiveMinimum) : model.exclusiveMinimum != null) {
-            return false;
-        }
         if (uniqueItems != null ? !uniqueItems.equals(model.uniqueItems) : model.uniqueItems != null) {
             return false;
         }
@@ -444,19 +383,6 @@ public class ModelImpl extends AbstractModel {
         if (minimum != null ? !minimum.equals(model.minimum) : model.minimum != null) {
             return false;
         }
-        if (minLength != null ? !minLength.equals(model.minLength) : model.minLength != null) {
-            return false;
-        }
-        if (maxLength != null ? !maxLength.equals(model.maxLength) : model.maxLength != null) {
-            return false;
-        }
-        if (pattern != null ? !pattern.equals(model.pattern) : model.pattern != null) {
-            return false;
-        }
-        if (multipleOf != null ? !multipleOf.equals(model.multipleOf) : model.multipleOf != null) {
-            return false;
-        }
-
         return maximum != null ? maximum.equals(model.maximum) : model.maximum == null;
 
     }
@@ -480,12 +406,6 @@ public class ModelImpl extends AbstractModel {
         result = 31 * result + (_enum != null ? _enum.hashCode() : 0);
         result = 31 * result + (minimum != null ? minimum.hashCode() : 0);
         result = 31 * result + (maximum != null ? maximum.hashCode() : 0);
-        result = 31 * result + (minLength != null ? minLength.hashCode() : 0);
-        result = 31 * result + (maxLength != null ? maxLength.hashCode() : 0);
-        result = 31 * result + (exclusiveMinimum != null ? exclusiveMinimum.hashCode() : 0);
-        result = 31 * result + (exclusiveMaximum != null ? exclusiveMaximum.hashCode() : 0);
-        result = 31 * result + (pattern != null ? pattern.hashCode() : 0);
-        result = 31 * result + (multipleOf != null ? multipleOf.hashCode() : 0);
         return result;
     }
 
@@ -509,12 +429,6 @@ public class ModelImpl extends AbstractModel {
         cloned.defaultValue = this.defaultValue;
         cloned.minimum = this.minimum;
         cloned.maximum = this.maximum;
-        cloned.minLength = this.minLength;
-        cloned.maxLength = this.maxLength;
-        cloned.exclusiveMinimum = this.exclusiveMinimum;
-        cloned.exclusiveMaximum = this.exclusiveMaximum;
-        cloned.pattern = this.pattern;
-        cloned.multipleOf = this.multipleOf;
 
         return cloned;
     }
