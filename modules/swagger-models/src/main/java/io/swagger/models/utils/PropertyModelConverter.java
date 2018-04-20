@@ -37,6 +37,14 @@ public class PropertyModelConverter {
                 mapProperty.setFormat(m.getFormat());
                 mapProperty.setName(m.getName());
                 mapProperty.setTitle(m.getTitle());
+                mapProperty.setMaximum(m.getMaximum());
+                mapProperty.setMinimum(m.getMinimum());
+                mapProperty.setExclusiveMaximum(m.getExclusiveMaximum());
+                mapProperty.setExclusiveMinimum(m.getExclusiveMinimum());
+                mapProperty.setPattern(m.getPattern());
+                mapProperty.setMultipleOf(m.getMultipleOf());
+                mapProperty.setMinLength(m.getMinLength());
+                mapProperty.setMaxLength(m.getMaxLength());
                 List<String> required = m.getRequired();
                 if (required != null) {
                     for (String name : required) {
@@ -73,6 +81,14 @@ public class PropertyModelConverter {
             property.setDescription(m.getDescription());
             property.setTitle(m.getTitle());
             property.setUniqueItems(m.getUniqueItems());
+            property.setMaximum(m.getMaximum());
+            property.setMinimum(m.getMinimum());
+            property.setExclusiveMaximum(m.getExclusiveMaximum());
+            property.setExclusiveMinimum(m.getExclusiveMinimum());
+            property.setPattern(m.getPattern());
+            property.setMultipleOf(m.getMultipleOf());
+            property.setMinLength(m.getMinLength());
+            property.setMaxLength(m.getMaxLength());
             return property;
 
         } else if(model instanceof RefModel) {
@@ -86,6 +102,14 @@ public class PropertyModelConverter {
             objectProperty.setTitle(model.getTitle());
             objectProperty.setExample(model.getExample());
             ComposedModel cm = (ComposedModel) model;
+            objectProperty.setMaximum(cm.getMaximum());
+            objectProperty.setMinimum(cm.getMinimum());
+            objectProperty.setExclusiveMaximum(cm.getExclusiveMaximum());
+            objectProperty.setExclusiveMinimum(cm.getExclusiveMinimum());
+            objectProperty.setPattern(cm.getPattern());
+            objectProperty.setMultipleOf(cm.getMultipleOf());
+            objectProperty.setMinLength(cm.getMinLength());
+            objectProperty.setMaxLength(cm.getMaxLength());
             Set<String> requiredProperties = new HashSet<>();
             for(Model item : cm.getAllOf()) {
                 Property itemProperty = modelToProperty(item);
@@ -138,6 +162,14 @@ public class PropertyModelConverter {
         args.put(PropertyBuilder.PropertyId.MAXIMUM, model.getMaximum());
         args.put(PropertyBuilder.PropertyId.UNIQUE_ITEMS, model.getUniqueItems());
         args.put(PropertyBuilder.PropertyId.VENDOR_EXTENSIONS, model.getVendorExtensions());
+        args.put(PropertyBuilder.PropertyId.PATTERN, model.getPattern());
+        args.put(PropertyBuilder.PropertyId.MAXIMUM, model.getMaximum());
+        args.put(PropertyBuilder.PropertyId.MINIMUM, model.getMinimum());
+        args.put(PropertyBuilder.PropertyId.EXCLUSIVE_MAXIMUM, model.getExclusiveMaximum());
+        args.put(PropertyBuilder.PropertyId.EXCLUSIVE_MINIMUM, model.getExclusiveMinimum());
+        args.put(PropertyBuilder.PropertyId.MULTIPLE_OF, model.getMultipleOf());
+        args.put(PropertyBuilder.PropertyId.MIN_LENGTH, model.getMinLength());
+        args.put(PropertyBuilder.PropertyId.MAX_LENGTH, model.getMaxLength());
         return args;
     }
 
@@ -189,6 +221,14 @@ public class PropertyModelConverter {
             arrayModel.setDescription(description);
             arrayModel.setExample(example);
             arrayModel.setUniqueItems(arrayProperty.getUniqueItems());
+            arrayModel.setMaximum(arrayProperty.getMaximum());
+            arrayModel.setMinimum(arrayProperty.getMinimum());
+            arrayModel.setMaxLength(arrayProperty.getMaxLength());
+            arrayModel.setMinLength(arrayProperty.getMinLength());
+            arrayModel.setMultipleOf(arrayProperty.getMultipleOf());
+            arrayModel.setPattern(arrayProperty.getPattern());
+            arrayModel.setExclusiveMaximum(arrayProperty.getExclusiveMaximum());
+            arrayModel.setExclusiveMinimum(arrayProperty.getExclusiveMinimum());
 
             if(extensions != null) {
                 arrayModel.setVendorExtensions(extensions);

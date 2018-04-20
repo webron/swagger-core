@@ -13,7 +13,6 @@ public class StringProperty extends AbstractProperty implements Property {
     public static final String TYPE = "string";
     protected List<String> _enum;
     protected Integer minLength = null, maxLength = null;
-    protected String pattern = null;
     protected String _default;
 
     public enum Format {
@@ -38,6 +37,11 @@ public class StringProperty extends AbstractProperty implements Property {
             }
             return null;
         }
+    }
+
+    public StringProperty pattern(String pattern) {
+        this.setPattern(pattern);
+        return this;
     }
 
     public StringProperty() {
@@ -74,11 +78,6 @@ public class StringProperty extends AbstractProperty implements Property {
 
     public StringProperty maxLength(Integer maxLength) {
         this.setMaxLength(maxLength);
-        return this;
-    }
-
-    public StringProperty pattern(String pattern) {
-        this.setPattern(pattern);
         return this;
     }
 
@@ -141,14 +140,6 @@ public class StringProperty extends AbstractProperty implements Property {
         this.maxLength = maxLength;
     }
 
-    public String getPattern() {
-        return pattern;
-    }
-
-    public void setPattern(String pattern) {
-        this.pattern = pattern;
-    }
-
     public String getDefault() {
         return _default;
     }
@@ -165,7 +156,6 @@ public class StringProperty extends AbstractProperty implements Property {
         result = prime * result + ((_enum == null) ? 0 : _enum.hashCode());
         result = prime * result + ((maxLength == null) ? 0 : maxLength.hashCode());
         result = prime * result + ((minLength == null) ? 0 : minLength.hashCode());
-        result = prime * result + ((pattern == null) ? 0 : pattern.hashCode());
         return result;
     }
 
@@ -204,13 +194,6 @@ public class StringProperty extends AbstractProperty implements Property {
                 return false;
             }
         } else if (!minLength.equals(other.minLength)) {
-            return false;
-        }
-        if (pattern == null) {
-            if (other.pattern != null) {
-                return false;
-            }
-        } else if (!pattern.equals(other.pattern)) {
             return false;
         }
         return true;
