@@ -158,8 +158,6 @@ public class PropertyModelConverter {
         args.put(PropertyBuilder.PropertyId.TITLE, model.getTitle());
         args.put(PropertyBuilder.PropertyId.DEFAULT, model.getDefaultValue());
         args.put(PropertyBuilder.PropertyId.DESCRIMINATOR, model.getDiscriminator());
-        args.put(PropertyBuilder.PropertyId.MINIMUM, model.getMinimum());
-        args.put(PropertyBuilder.PropertyId.MAXIMUM, model.getMaximum());
         args.put(PropertyBuilder.PropertyId.UNIQUE_ITEMS, model.getUniqueItems());
         args.put(PropertyBuilder.PropertyId.VENDOR_EXTENSIONS, model.getVendorExtensions());
         args.put(PropertyBuilder.PropertyId.PATTERN, model.getPattern());
