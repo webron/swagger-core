@@ -391,7 +391,7 @@ public class ModelSerializerTest {
     @Test(description = "It should serialize a ModelImpl with new values added in 673")
     public void issue673SerializeModelImpl() throws IOException {
         final ModelImpl modelImpl = new ModelImpl();
-        modelImpl.setMultipleOf(10);
+        modelImpl.setMultipleOf(new BigDecimal(10));
         modelImpl.setMinimum(new BigDecimal(1));
         modelImpl.setMaximum(new BigDecimal(100));
         modelImpl.setExclusiveMinimum(true);
@@ -406,7 +406,7 @@ public class ModelSerializerTest {
     @Test(description = "It should serialize an ArrayModel with new values added in 673")
     public void issue673SerializeArrayModel() throws IOException {
         final ArrayModel arrayModel = new ArrayModel();
-        arrayModel.setMultipleOf(10);
+        arrayModel.setMultipleOf(new BigDecimal(10));
         arrayModel.setMinimum(new BigDecimal(1));
         arrayModel.setMaximum(new BigDecimal(100));
         arrayModel.setExclusiveMinimum(true);
@@ -421,7 +421,7 @@ public class ModelSerializerTest {
     @Test(description = "It should serialize a ComposedModel with new values added in 673")
     public void issue673SerializeComposedModel() throws IOException {
         final ComposedModel composedModel = new ComposedModel();
-        composedModel.setMultipleOf(10);
+        composedModel.setMultipleOf(new BigDecimal(10));
         composedModel.setMinimum(new BigDecimal(1));
         composedModel.setMaximum(new BigDecimal(100));
         composedModel.setExclusiveMinimum(true);

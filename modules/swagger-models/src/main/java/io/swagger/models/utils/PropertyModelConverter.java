@@ -6,12 +6,7 @@ import io.swagger.models.Model;
 import io.swagger.models.ModelImpl;
 import io.swagger.models.RefModel;
 import io.swagger.models.Xml;
-import io.swagger.models.properties.ArrayProperty;
-import io.swagger.models.properties.MapProperty;
-import io.swagger.models.properties.ObjectProperty;
-import io.swagger.models.properties.Property;
-import io.swagger.models.properties.PropertyBuilder;
-import io.swagger.models.properties.RefProperty;
+import io.swagger.models.properties.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,14 +32,6 @@ public class PropertyModelConverter {
                 mapProperty.setFormat(m.getFormat());
                 mapProperty.setName(m.getName());
                 mapProperty.setTitle(m.getTitle());
-                mapProperty.setMaximum(m.getMaximum());
-                mapProperty.setMinimum(m.getMinimum());
-                mapProperty.setExclusiveMaximum(m.getExclusiveMaximum());
-                mapProperty.setExclusiveMinimum(m.getExclusiveMinimum());
-                mapProperty.setPattern(m.getPattern());
-                mapProperty.setMultipleOf(m.getMultipleOf());
-                mapProperty.setMinLength(m.getMinLength());
-                mapProperty.setMaxLength(m.getMaxLength());
                 List<String> required = m.getRequired();
                 if (required != null) {
                     for (String name : required) {
@@ -68,6 +55,26 @@ public class PropertyModelConverter {
                 return objectProperty;
             }
 
+            if(property instanceof StringProperty) {
+                StringProperty stringProperty = (StringProperty) property;
+                ModelImpl modelImpl = (ModelImpl) model;
+                stringProperty.setPattern(modelImpl.getPattern());
+                stringProperty.setMaxLength(modelImpl.getMaxLength());
+                stringProperty.setMinLength(modelImpl.getMinLength());
+                return stringProperty;
+            }
+
+            if(property instanceof AbstractNumericProperty) {
+                AbstractNumericProperty numericProperty = (AbstractNumericProperty) property;
+                ModelImpl modelImpl = (ModelImpl) model;
+                numericProperty.setMaximum(modelImpl.getMaximum());
+                numericProperty.setMinimum(modelImpl.getMinimum());
+                numericProperty.setMultipleOf(modelImpl.getMultipleOf());
+                numericProperty.setExclusiveMinimum(modelImpl.getExclusiveMinimum());
+                numericProperty.setExclusiveMaximum(modelImpl.getExclusiveMaximum());
+                return numericProperty;
+            }
+
             return property;
 
         } else if(model instanceof ArrayModel) {
@@ -81,14 +88,6 @@ public class PropertyModelConverter {
             property.setDescription(m.getDescription());
             property.setTitle(m.getTitle());
             property.setUniqueItems(m.getUniqueItems());
-            property.setMaximum(m.getMaximum());
-            property.setMinimum(m.getMinimum());
-            property.setExclusiveMaximum(m.getExclusiveMaximum());
-            property.setExclusiveMinimum(m.getExclusiveMinimum());
-            property.setPattern(m.getPattern());
-            property.setMultipleOf(m.getMultipleOf());
-            property.setMinLength(m.getMinLength());
-            property.setMaxLength(m.getMaxLength());
             return property;
 
         } else if(model instanceof RefModel) {
@@ -102,14 +101,7 @@ public class PropertyModelConverter {
             objectProperty.setTitle(model.getTitle());
             objectProperty.setExample(model.getExample());
             ComposedModel cm = (ComposedModel) model;
-            objectProperty.setMaximum(cm.getMaximum());
-            objectProperty.setMinimum(cm.getMinimum());
-            objectProperty.setExclusiveMaximum(cm.getExclusiveMaximum());
-            objectProperty.setExclusiveMinimum(cm.getExclusiveMinimum());
-            objectProperty.setPattern(cm.getPattern());
-            objectProperty.setMultipleOf(cm.getMultipleOf());
-            objectProperty.setMinLength(cm.getMinLength());
-            objectProperty.setMaxLength(cm.getMaxLength());
+
             Set<String> requiredProperties = new HashSet<>();
             for(Model item : cm.getAllOf()) {
                 Property itemProperty = modelToProperty(item);
@@ -219,14 +211,6 @@ public class PropertyModelConverter {
             arrayModel.setDescription(description);
             arrayModel.setExample(example);
             arrayModel.setUniqueItems(arrayProperty.getUniqueItems());
-            arrayModel.setMaximum(arrayProperty.getMaximum());
-            arrayModel.setMinimum(arrayProperty.getMinimum());
-            arrayModel.setMaxLength(arrayProperty.getMaxLength());
-            arrayModel.setMinLength(arrayProperty.getMinLength());
-            arrayModel.setMultipleOf(arrayProperty.getMultipleOf());
-            arrayModel.setPattern(arrayProperty.getPattern());
-            arrayModel.setExclusiveMaximum(arrayProperty.getExclusiveMaximum());
-            arrayModel.setExclusiveMinimum(arrayProperty.getExclusiveMinimum());
 
             if(extensions != null) {
                 arrayModel.setVendorExtensions(extensions);
@@ -248,6 +232,22 @@ public class PropertyModelConverter {
         model.setType(type);
         model.setFormat(format);
         model.setAllowEmptyValue(allowEmptyValue);
+
+        if(property instanceof StringProperty) {
+            StringProperty stringProperty = (StringProperty) property;
+            model.setPattern(stringProperty.getPattern());
+            model.setMinLength(stringProperty.getMinLength());
+            model.setMaxLength(stringProperty.getMaxLength());
+        }
+
+        if(property instanceof AbstractNumericProperty) {
+            AbstractNumericProperty numericProperty = (AbstractNumericProperty) property;
+            model.setMaximum(numericProperty.getMaximum());
+            model.setMinimum(numericProperty.getMinimum());
+            model.setExclusiveMaximum(numericProperty.getExclusiveMaximum());
+            model.setExclusiveMinimum(numericProperty.getExclusiveMinimum());
+            model.setMultipleOf(numericProperty.getMultipleOf());
+        }
 
         if(extensions != null) {
             model.setVendorExtensions(extensions);

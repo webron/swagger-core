@@ -113,6 +113,19 @@ definitions:
         properties:
           gps:
             type: string
+            pattern: Pattern
+  NewExtendedStringAddress:
+      type: string
+      pattern: Pattern
+      minLength: 10
+      maxLength: 50
+  NewExtendedNumericAddress:
+      type: number
+      exclusiveMinimum: true
+      exclusiveMaximum: true
+      minimum: 1
+      maximum: 100
+      multipleOf: 5
   InstructionSequence:
       title: InstructionSequence
       description: The sequence of steps that make up the Instructions
@@ -133,3 +146,4 @@ definitions:
       multipleOf: 5
       items:
           type: string
+          pattern: Pattern

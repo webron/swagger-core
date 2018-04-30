@@ -4,6 +4,11 @@ import java.math.BigDecimal;
 
 public abstract class AbstractNumericProperty extends AbstractProperty implements Property {
 
+    protected BigDecimal minimum;
+    protected BigDecimal maximum;
+    protected BigDecimal multipleOf;
+    protected Boolean exclusiveMinimum;
+    protected Boolean exclusiveMaximum;
 
     public AbstractNumericProperty minimum(BigDecimal minimum) {
         this.setMinimum(minimum);
@@ -58,6 +63,46 @@ public abstract class AbstractNumericProperty extends AbstractProperty implement
         }
         return exclusiveMaximum != null ? exclusiveMaximum.equals(that.exclusiveMaximum) : that.exclusiveMaximum == null;
 
+    }
+
+    public BigDecimal getMinimum() {
+        return minimum;
+    }
+
+    public void setMinimum(BigDecimal minimum) {
+        this.minimum = minimum;
+    }
+
+    public BigDecimal getMaximum() {
+        return maximum;
+    }
+
+    public void setMaximum(BigDecimal maximum) {
+        this.maximum = maximum;
+    }
+
+    public BigDecimal getMultipleOf() {
+        return multipleOf;
+    }
+
+    public void setMultipleOf(BigDecimal multipleOf) {
+        this.multipleOf = multipleOf;
+    }
+
+    public Boolean getExclusiveMinimum() {
+        return exclusiveMinimum;
+    }
+
+    public void setExclusiveMinimum(Boolean exclusiveMinimum) {
+        this.exclusiveMinimum = exclusiveMinimum;
+    }
+
+    public Boolean getExclusiveMaximum() {
+        return exclusiveMaximum;
+    }
+
+    public void setExclusiveMaximum(Boolean exclusiveMaximum) {
+        this.exclusiveMaximum = exclusiveMaximum;
     }
 
     @Override

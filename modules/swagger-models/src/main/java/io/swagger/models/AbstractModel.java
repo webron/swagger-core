@@ -16,7 +16,7 @@ public abstract class AbstractModel implements Model {
     private Xml xml;
     private BigDecimal minimum;
     private BigDecimal maximum;
-    private Number multipleOf;
+    private BigDecimal multipleOf;
     private Boolean exclusiveMinimum;
     private Boolean exclusiveMaximum;
     private Integer minLength;
@@ -70,11 +70,11 @@ public abstract class AbstractModel implements Model {
         this.maximum = maximum;
     }
 
-    public Number getMultipleOf() {
+    public BigDecimal getMultipleOf() {
         return multipleOf;
     }
 
-    public void setMultipleOf(Number multipleOf) {
+    public void setMultipleOf(BigDecimal multipleOf) {
         this.multipleOf = multipleOf;
     }
 

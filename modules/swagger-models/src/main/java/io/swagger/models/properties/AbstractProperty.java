@@ -22,14 +22,6 @@ public abstract class AbstractProperty implements Property, Cloneable {
     protected Boolean allowEmptyValue;
     protected String access;
     protected Map<String, Object> vendorExtensions = new LinkedHashMap<String, Object>();
-    protected BigDecimal minimum;
-    protected BigDecimal maximum;
-    protected Number multipleOf;
-    protected Boolean exclusiveMinimum;
-    protected Boolean exclusiveMaximum;
-    protected Integer minLength;
-    protected Integer maxLength;
-    protected String pattern;
 
     @Override
     public Property rename(String newName) {
@@ -104,33 +96,7 @@ public abstract class AbstractProperty implements Property, Cloneable {
         if (access != null ? !access.equals(that.access) : that.access != null) {
             return false;
         }
-        if (exclusiveMaximum != null ? !exclusiveMaximum.equals(that.exclusiveMaximum) : that.exclusiveMaximum != null) {
-            return false;
-        }
-        if (exclusiveMinimum != null ? !exclusiveMinimum.equals(that.exclusiveMinimum) : that.exclusiveMinimum != null) {
-            return false;
-        }
-        if (minimum != null ? !minimum.equals(that.minimum) : that.minimum != null) {
-            return false;
-        }
-        if (maximum != null ? !maximum.equals(that.maximum) : that.maximum != null) {
-            return false;
-        }
-        if (minLength != null ? !minLength.equals(that.minLength) : that.minLength != null) {
-            return false;
-        }
-        if (maxLength != null ? !maxLength.equals(that.maxLength) : that.maxLength != null) {
-            return false;
-        }
-        if (pattern != null ? !pattern.equals(that.pattern) : that.pattern != null) {
-            return false;
-        }
-        if (multipleOf != null ? !multipleOf.equals(that.multipleOf) : that.multipleOf != null) {
-            return false;
-        }
-        if (pattern != null ? !pattern.equals(that.pattern) : that.pattern != null) {
-            return false;
-        }
+
         return vendorExtensions != null ? vendorExtensions.equals(that.vendorExtensions) : that.vendorExtensions == null;
 
     }
@@ -150,14 +116,6 @@ public abstract class AbstractProperty implements Property, Cloneable {
         result = 31 * result + (allowEmptyValue != null ? allowEmptyValue.hashCode() : 0);
         result = 31 * result + (access != null ? access.hashCode() : 0);
         result = 31 * result + (vendorExtensions != null ? vendorExtensions.hashCode() : 0);
-        result = 31 * result + (minimum != null ? minimum.hashCode() : 0);
-        result = 31 * result + (maximum != null ? maximum.hashCode() : 0);
-        result = 31 * result + (minLength != null ? minLength.hashCode() : 0);
-        result = 31 * result + (maxLength != null ? maxLength.hashCode() : 0);
-        result = 31 * result + (exclusiveMinimum != null ? exclusiveMinimum.hashCode() : 0);
-        result = 31 * result + (exclusiveMaximum != null ? exclusiveMaximum.hashCode() : 0);
-        result = 31 * result + (pattern != null ? pattern.hashCode() : 0);
-        result = 31 * result + (multipleOf != null ? multipleOf.hashCode() : 0);
         return result;
     }
 
@@ -267,70 +225,6 @@ public abstract class AbstractProperty implements Property, Cloneable {
     @Override
     public void setAccess(String access) {
         this.access = access;
-    }
-
-    public String getPattern() {
-        return pattern;
-    }
-
-    public void setPattern(String pattern) {
-        this.pattern = pattern;
-    }
-
-    public BigDecimal getMinimum() {
-        return minimum;
-    }
-
-    public void setMinimum(BigDecimal minimum) {
-        this.minimum = minimum;
-    }
-
-    public BigDecimal getMaximum() {
-        return maximum;
-    }
-
-    public void setMaximum(BigDecimal maximum) {
-        this.maximum = maximum;
-    }
-
-    public Number getMultipleOf() {
-        return multipleOf;
-    }
-
-    public void setMultipleOf(Number multipleOf) {
-        this.multipleOf = multipleOf;
-    }
-
-    public Boolean getExclusiveMinimum() {
-        return exclusiveMinimum;
-    }
-
-    public void setExclusiveMinimum(Boolean exclusiveMinimum) {
-        this.exclusiveMinimum = exclusiveMinimum;
-    }
-
-    public Boolean getExclusiveMaximum() {
-        return exclusiveMaximum;
-    }
-
-    public void setExclusiveMaximum(Boolean exclusiveMaximum) {
-        this.exclusiveMaximum = exclusiveMaximum;
-    }
-
-    public Integer getMinLength() {
-        return minLength;
-    }
-
-    public void setMinLength(Integer minLength) {
-        this.minLength = minLength;
-    }
-
-    public Integer getMaxLength() {
-        return maxLength;
-    }
-
-    public void setMaxLength(Integer maxLength) {
-        this.maxLength = maxLength;
     }
 
     public Boolean getAllowEmptyValue() {

@@ -14,6 +14,7 @@ public class StringProperty extends AbstractProperty implements Property {
     protected List<String> _enum;
     protected Integer minLength = null, maxLength = null;
     protected String _default;
+    protected String pattern;
 
     public enum Format {
         URI("uri"),
@@ -148,6 +149,14 @@ public class StringProperty extends AbstractProperty implements Property {
         this._default = _default;
     }
 
+    public String getPattern() {
+        return pattern;
+    }
+
+    public void setPattern(String pattern) {
+        this.pattern = pattern;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -156,6 +165,7 @@ public class StringProperty extends AbstractProperty implements Property {
         result = prime * result + ((_enum == null) ? 0 : _enum.hashCode());
         result = prime * result + ((maxLength == null) ? 0 : maxLength.hashCode());
         result = prime * result + ((minLength == null) ? 0 : minLength.hashCode());
+        result = 31 * result + (pattern != null ? pattern.hashCode() : 0);
         return result;
     }
 
@@ -194,6 +204,9 @@ public class StringProperty extends AbstractProperty implements Property {
                 return false;
             }
         } else if (!minLength.equals(other.minLength)) {
+            return false;
+        }
+        if (pattern != null ? !pattern.equals(other.pattern) : other.pattern != null) {
             return false;
         }
         return true;
