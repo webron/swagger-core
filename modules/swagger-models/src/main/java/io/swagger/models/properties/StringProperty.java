@@ -165,7 +165,7 @@ public class StringProperty extends AbstractProperty implements Property {
         result = prime * result + ((_enum == null) ? 0 : _enum.hashCode());
         result = prime * result + ((maxLength == null) ? 0 : maxLength.hashCode());
         result = prime * result + ((minLength == null) ? 0 : minLength.hashCode());
-        result = 31 * result + (pattern != null ? pattern.hashCode() : 0);
+        result = prime * result + (pattern != null ? pattern.hashCode() : 0);
         return result;
     }
 
